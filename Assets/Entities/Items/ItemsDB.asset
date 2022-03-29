@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abbabd67c042efc4db9b42e7cd02e165, type: 3}
+  m_Name: ItemsDB
+  m_EditorClassIdentifier: 
+  items:
+  - id: 1
+    icon: {fileID: 21300000, guid: f6875cb3e5ba4d940a02f7874b62bc6f, type: 3}
+    itemName: Damage potion
+    description: Increases hero damage
+    type: 0
+    value: 5
+    lifetimeInSeconds: 5
+  - id: 2
+    icon: {fileID: 21300000, guid: 2d8a91ed20d7b2d4db73bfbd94116c0d, type: 3}
+    itemName: Armor potion
+    description: Temporarily increases hero armor
+    type: 2
+    value: 10
+    lifetimeInSeconds: 5
+  - id: 0
+    icon: {fileID: 21300000, guid: 643697ff91371c34f9a364607b790153, type: 3}
+    itemName: Force potion
+    description: Increases hero force
+    type: 1
+    value: 5
+    lifetimeInSeconds: 5
+  currentItem:
+    id: 1
+    icon: {fileID: 21300000, guid: f6875cb3e5ba4d940a02f7874b62bc6f, type: 3}
+    itemName: Damage potion
+    description: Increases hero damage
+    type: 0
+    value: 5
+    lifetimeInSeconds: 5
