@@ -12,7 +12,7 @@ public class BuffReciever : MonoBehaviour
     private void Start()
     {
         buffs = new List<Buff>();
-        GameManager.Instance.buffRecieverContainer.Add(gameObject, this);
+        GameManager.Instance.BuffRecieverContainer.Add(gameObject, this);
     }
 
     public void AddBuff(Buff buff)

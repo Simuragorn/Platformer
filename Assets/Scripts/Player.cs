@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float buffedForce;
+    public int additiveDamage;
 
     public float speed = 2;
     public float force = 2;
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     public Health health;
     [SerializeField] private BuffReciever buffReciever;
     private bool isJumpReady = true;
+    [SerializeField] private Camera playerCamera;
 
     private List<Arrow> arrowsPool;
 
@@ -138,6 +140,7 @@ public class Player : MonoBehaviour
     {
         var arrowForce = (spriteRenderer.flipX ? -buffedForce : buffedForce) * 5;
         currentArrow.SetImpulse(Vector2.right, arrowForce, this);
+        currentArrow.BuffDamage(additiveDamage);
 
         isReloading = true;
         StartCoroutine(Reloading());
@@ -168,7 +171,7 @@ public class Player : MonoBehaviour
             switch (buff.type)
             {
                 case BuffType.Damage:
-                    arrow.BuffDamage((int)buff.additiveBonus);
+                    additiveDamage = (int)buff.additiveBonus;
                     break;
                 case BuffType.Force:
                     buffedForce = force + buff.additiveBonus;
@@ -190,6 +193,13 @@ public class Player : MonoBehaviour
             StartShooting();
         }
 #endif
+    }
+
+    private void OnDestroy()
+    {
+        playerCamera.transform.parent = null;
+        playerCamera.enabled = true;
+        GameManager.Instance.DeathScreenOpen();
     }
 
     private Arrow GetArrowFromPool()

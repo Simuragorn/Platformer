@@ -23,7 +23,7 @@ public class TriggerDamage : MonoBehaviour, IBuffable
         {
             return;
         }
-        if (GameManager.Instance.healthContainer.TryGetValue(collision.gameObject, out Health health))
+        if (GameManager.Instance.HealthContainer.TryGetValue(collision.gameObject, out Health health))
         {
             health.TakeHit(damage);
         }

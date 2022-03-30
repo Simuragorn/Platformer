@@ -31,12 +31,12 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.Instance.coinContainer.TryGetValue(collision.gameObject, out Coin coin))
+        if (GameManager.Instance.CoinContainer.TryGetValue(collision.gameObject, out Coin coin))
         {
             AddCoin(1);
             coin.StartDestroy();
         }
-        if (GameManager.Instance.itemContainer.TryGetValue(collision.gameObject, out ItemComponent itemComponent))
+        if (GameManager.Instance.ItemContainer.TryGetValue(collision.gameObject, out ItemComponent itemComponent))
         {
             items.Add(itemComponent.Item);
             itemComponent.Destroy();

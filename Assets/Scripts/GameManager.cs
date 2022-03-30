@@ -1,6 +1,21 @@
+using Assets.Scripts.Constants;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public enum PanelsEnum
+{
+    Inventory,
+    Settings,
+    DeathScreen
+}
+
+public enum ScenesEnum
+{
+    Menu,
+    Level1
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -12,33 +27,79 @@ public class GameManager : MonoBehaviour
         private set { _instance = value; }
     }
     #endregion
-    public Dictionary<GameObject, Health> healthContainer;
-    public Dictionary<GameObject, Coin> coinContainer;
-    public Dictionary<GameObject, BuffReciever> buffRecieverContainer;
-    public ItemDB itemDB;
-    public Dictionary<GameObject, ItemComponent> itemContainer;
+    public Dictionary<GameObject, Health> HealthContainer;
+    public Dictionary<GameObject, Coin> CoinContainer;
+    public Dictionary<GameObject, BuffReciever> BuffRecieverContainer;
+    public ItemDB ItemDB;
+    public Dictionary<GameObject, ItemComponent> ItemContainer;
     [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject deathPanel;
+
+    public void InventoryOpenOrClose()
+    {
+        OpenOrClosePanel(PanelsEnum.Inventory);
+    }
+    public void SettingsOpenOrClose()
+    {
+        OpenOrClosePanel(PanelsEnum.Settings);
+    }
+
+    public void DeathScreenOpen()
+    {
+        OpenOrClosePanel(PanelsEnum.DeathScreen);
+    }
+
+    public void ExitToMenu()
+    {
+        int previousScore = 0;
+        if (PlayerPrefs.HasKey(StorageConstants.PLAYER_SCORE_KEY))
+        {
+            previousScore = PlayerPrefs.GetInt(StorageConstants.PLAYER_SCORE_KEY);
+        }
+        int currentScore = PlayerInventory.Instance.coinsCount;
+        if (previousScore < currentScore)
+        {
+            PlayerPrefs.SetInt(StorageConstants.PLAYER_SCORE_KEY, currentScore);
+        }
+        SceneManager.LoadScene((int)ScenesEnum.Menu);
+    }
+
+    public void Restart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        Resources.UnloadUnusedAssets();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void Finish()
+    {
+        //Show some animation
+        ExitToMenu();
+    }
 
     private void Awake()
     {
         Instance = this;
-        healthContainer = new Dictionary<GameObject, Health>();
-        coinContainer = new Dictionary<GameObject, Coin>();
-        buffRecieverContainer = new Dictionary<GameObject, BuffReciever>();
-        itemContainer = new Dictionary<GameObject, ItemComponent>();
+        HealthContainer = new Dictionary<GameObject, Health>();
+        CoinContainer = new Dictionary<GameObject, Coin>();
+        BuffRecieverContainer = new Dictionary<GameObject, BuffReciever>();
+        ItemContainer = new Dictionary<GameObject, ItemComponent>();
     }
 
-    public void Pause()
+    private void OpenOrClosePanel(PanelsEnum panelType)
     {
-        if (Time.timeScale > 0)
+        if (panelType == PanelsEnum.DeathScreen)
         {
-            inventoryPanel.SetActive(true);
-            Time.timeScale = 0;
+            deathPanel.SetActive(true);
         }
-        else
-        {
-            inventoryPanel.SetActive(false);
-            Time.timeScale = 1;
-        }
+
+        settingsPanel.SetActive(panelType == PanelsEnum.Settings &&
+            !settingsPanel.activeSelf);
+        inventoryPanel.SetActive(panelType == PanelsEnum.Inventory &&
+            !inventoryPanel.activeSelf);
+
+        bool isPaused = settingsPanel.activeSelf || inventoryPanel.activeSelf;
+        Time.timeScale = isPaused ? 0 : 1;
     }
 }
