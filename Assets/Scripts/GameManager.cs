@@ -78,6 +78,11 @@ public class GameManager : MonoBehaviour
         ExitToMenu();
     }
 
+    public void RewardPlayer()
+    {
+        PlayerRewarder.Instance.RewardPlayer();
+    }
+
     private void Awake()
     {
         Instance = this;
