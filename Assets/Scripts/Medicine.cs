@@ -9,7 +9,7 @@ public class Medicine : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (GameManager.Instance.healthContainer.TryGetValue(collision.gameObject, out Health health))
+        if (GameManager.Instance.HealthContainer.TryGetValue(collision.gameObject, out Health health))
         {
             health.SetHealth(bonusHealth);
             animator.SetTrigger("StartDestroy");

@@ -11,7 +11,7 @@ public class CollisionDamage : MonoBehaviour
 
     public void OnCollisionStay2D(Collision2D collision)
     {
-        if (GameManager.Instance.healthContainer.TryGetValue(collision.gameObject, out Health health))
+        if (GameManager.Instance.HealthContainer.TryGetValue(collision.gameObject, out Health health))
         {
             direction = (collision.transform.position - transform.position).x;
             targetHealth = health;

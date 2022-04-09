@@ -6,6 +6,7 @@ public class Health : MonoBehaviour, IBuffable
 {
     [SerializeField] private int health;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject character;
     public int CurrentHealth => health;
 
     public void TakeHit(int damage)
@@ -17,7 +18,7 @@ public class Health : MonoBehaviour, IBuffable
         }
         if (health <= damage)
         {
-            Object.Destroy(gameObject);
+            Object.Destroy(character);
         }
     }
 
@@ -29,13 +30,8 @@ public class Health : MonoBehaviour, IBuffable
     }
     void Start()
     {
-        GameManager.Instance.healthContainer.Add(gameObject, this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        GameManager.Instance.HealthContainer.Add(gameObject, this);
+        character = character != null ? character : gameObject;
     }
 
     public void SetBuff(int value)

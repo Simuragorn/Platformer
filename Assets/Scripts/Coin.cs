@@ -7,13 +7,13 @@ public class Coin : MonoBehaviour
     [SerializeField] private Animator animator;
     private void Start()
     {
-        GameManager.Instance.coinContainer.Add(gameObject, this);
+        GameManager.Instance.CoinContainer.Add(gameObject, this);
     }
 
     public void StartDestroy()
     {
         animator.SetTrigger("StartDestroy");
-        GameManager.Instance.coinContainer.Remove(gameObject);
+        GameManager.Instance.CoinContainer.Remove(gameObject);
     }
 
     public void EndDestroy()

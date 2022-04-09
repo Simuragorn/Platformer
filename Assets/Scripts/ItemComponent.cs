@@ -16,9 +16,9 @@ public class ItemComponent : MonoBehaviour, IObjectDestroyer
 
     void Start()
     {
-        item = GameManager.Instance.itemDB.GetItem((int)type);
+        item = GameManager.Instance.ItemDB.GetItem((int)type);
         spriteRenderer.sprite = item.Icon;
-        GameManager.Instance.itemContainer.Add(gameObject, this);
+        GameManager.Instance.ItemContainer.Add(gameObject, this);
     }
 
     // Update is called once per frame

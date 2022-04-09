@@ -8,7 +8,7 @@ public class BuffEmitter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(GameManager.Instance.buffRecieverContainer.TryGetValue(collision.gameObject, out BuffReciever reciever))
+        if(GameManager.Instance.BuffRecieverContainer.TryGetValue(collision.gameObject, out BuffReciever reciever))
         {
             reciever.AddBuff(buff);
         }
@@ -16,7 +16,7 @@ public class BuffEmitter : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (GameManager.Instance.buffRecieverContainer.TryGetValue(collision.gameObject, out BuffReciever reciever))
+        if (GameManager.Instance.BuffRecieverContainer.TryGetValue(collision.gameObject, out BuffReciever reciever))
         {
             reciever.RemoveBuff(buff);
         }

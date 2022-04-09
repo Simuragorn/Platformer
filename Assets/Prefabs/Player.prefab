@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1068566126191250592}
   m_Father: {fileID: 5966950806971870968}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95,7 +96,7 @@ GameObject:
   m_Layer: 0
   m_Name: ArrowSpawnPoint
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -107,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468819652}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.295, y: 0.067, z: 0}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5966950806971870968}
@@ -151,7 +152,6 @@ Transform:
   - {fileID: 306901738}
   - {fileID: 297029763856797707}
   - {fileID: 468819653}
-  - {fileID: 1068566126191250592}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,20 +239,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a67c08ae8ce59498c0c271aae9cd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffedForce: 0
+  additiveDamage: 0
   speed: 4
   force: 8
   rigidbody: {fileID: 5966950806971870951}
-  minimalHeight: -10
-  isCheatMode: 1
+  minimalHeight: -36
+  isCheatMode: 0
   animator: {fileID: 302479625}
   spriteRenderer: {fileID: 5966950806971870969}
   groundDetection: {fileID: 1846585556715560880}
   arrow: {fileID: 5121295022943147415, guid: d78e1a97f3550b84d85ca85ad2b62038, type: 3}
   arrowSpawnPoint: {fileID: 468819653}
-  arrowsCount: 3
+  arrowsCount: 10
   health: {fileID: 7846729928880791794}
   buffReciever: {fileID: 4063757269260632003}
-  reloadInSeconds: 1
+  playerCamera: {fileID: 306901737}
+  reloadInSeconds: 0
 --- !u!114 &7846729928880791794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   animator: {fileID: 302479625}
+  character: {fileID: 0}
 --- !u!114 &302479624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,11 +439,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9127879916890461758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 0.75, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5966950806971870968}
-  m_RootOrder: 3
+  m_Father: {fileID: 306901738}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7629541175748195362
 SpriteRenderer:
